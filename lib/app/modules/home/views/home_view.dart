@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../article/views/article_view.dart';
-import '../../models/article_model.dart';
 import '../../widgets/bottom_nav_bar.dart';
 import '../../widgets/custom_tag.dart';
 import '../../widgets/image_container.dart';
@@ -11,7 +10,6 @@ class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Article article = Article.articles[0];
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -33,7 +31,7 @@ class HomeView extends GetView<HomeController> {
           : ListView(
               padding: EdgeInsets.zero,
               children: [
-                _NewsOfTheDay(article: article),
+                _NewsOfTheDay(),
                 _BreakingNews(),
               ],
             )),
@@ -42,13 +40,6 @@ class HomeView extends GetView<HomeController> {
 }
 
 class _BreakingNews extends StatelessWidget {
-  // const _BreakingNews({
-  //   Key? key,
-  //   required this.articles,
-  // }) : super(key: key);
-
-  // final List<Article> articles;
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -165,16 +156,14 @@ class _BreakingNews extends StatelessWidget {
 }
 
 class _NewsOfTheDay extends StatelessWidget {
-  const _NewsOfTheDay({required this.article});
-  final Article article;
-
   @override
   Widget build(BuildContext context) {
     return ImageContainer(
       height: MediaQuery.of(context).size.height * 0.45,
       width: double.infinity,
       padding: const EdgeInsets.all(20.0),
-      imageUrl: article.imageUrl,
+      imageUrl: Get.put(HomeController()).newsArticles[0].urlToImage.toString(),
+      // article.imageUrl,
       child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -193,7 +182,8 @@ class _NewsOfTheDay extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              article.title,
+              Get.put(HomeController()).newsArticles[0].title,
+              // article.title,
               style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                   fontWeight: FontWeight.bold,
                   height: 1.25,
