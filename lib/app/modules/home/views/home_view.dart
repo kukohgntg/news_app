@@ -47,7 +47,6 @@ class _NewsOfTheDay extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(20.0),
       imageUrl: Get.put(HomeController()).newsArticles[0].urlToImage.toString(),
-      // article.imageUrl,
       child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +66,6 @@ class _NewsOfTheDay extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               Get.put(HomeController()).newsArticles[0].title,
-              // article.title,
               style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                   fontWeight: FontWeight.bold,
                   height: 1.25,
@@ -124,7 +122,6 @@ class _BreakingNews extends StatelessWidget {
             height: 250,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              // itemCount: articles.length,
               itemCount: Get.put(HomeController()).newsArticles.length,
               itemBuilder: (context, index) {
                 return Container(
@@ -132,11 +129,6 @@ class _BreakingNews extends StatelessWidget {
                   margin: const EdgeInsets.only(right: 10),
                   child: InkWell(
                     onTap: () {
-                      // Navigator.pushNamed(
-                      //   context,
-                      //   ArticleView.routeName,
-                      //   arguments: homeController,
-                      // );
                       Get.to(
                         () => ArticleView(
                           title: Get.put(HomeController())
@@ -146,13 +138,13 @@ class _BreakingNews extends StatelessWidget {
                               .newsArticles[index]
                               .description,
                           imageUrl: Get.put(HomeController())
-                                  .newsArticles[index]
-                                  .urlToImage ??
-                              "",
+                              .newsArticles[index]
+                              .urlToImage
+                              .toString(),
                           author: Get.put(HomeController())
-                                  .newsArticles[index]
-                                  .author ??
-                              "",
+                              .newsArticles[index]
+                              .author
+                              .toString(),
                           publishedAt: Get.put(HomeController())
                               .newsArticles[index]
                               .publishedAt
@@ -169,9 +161,9 @@ class _BreakingNews extends StatelessWidget {
                           ImageContainer(
                             width: MediaQuery.of(context).size.width * 0.5,
                             imageUrl: Get.put(HomeController())
-                                    .newsArticles[index]
-                                    .urlToImage ??
-                                "",
+                                .newsArticles[index]
+                                .urlToImage
+                                .toString(),
                           ),
                           const SizedBox(height: 10),
                           Text(
@@ -197,9 +189,9 @@ class _BreakingNews extends StatelessWidget {
                           ),
                           Text(
                               Get.put(HomeController())
-                                      .newsArticles[index]
-                                      .author ??
-                                  "",
+                                  .newsArticles[index]
+                                  .author
+                                  .toString(),
                               style: Theme.of(context).textTheme.bodySmall),
                         ]),
                   ),

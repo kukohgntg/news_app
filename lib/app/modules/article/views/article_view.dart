@@ -30,7 +30,6 @@ class _ArticleView extends State<ArticleView> {
   Widget build(BuildContext context) {
     return ImageContainer(
       width: double.infinity,
-      // imageUrl: article.imageUrl,
       imageUrl: widget.imageUrl,
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -58,7 +57,6 @@ class _ArticleView extends State<ArticleView> {
                     backgroundColor: Colors.grey.withAlpha(150),
                     children: [
                       Text(
-                        // article.category,
                         widget.author,
                         style: Theme.of(context)
                             .textTheme
@@ -71,7 +69,6 @@ class _ArticleView extends State<ArticleView> {
                     height: 10,
                   ),
                   Text(
-                    // article.title,
                     widget.title,
                     style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                           fontWeight: FontWeight.bold,
@@ -83,7 +80,6 @@ class _ArticleView extends State<ArticleView> {
                     height: 10,
                   ),
                   Text(
-                    // article.subtitle,
                     widget.description,
                     style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           fontWeight: FontWeight.bold,
@@ -113,13 +109,11 @@ class _ArticleView extends State<ArticleView> {
                           radius: 10,
                           backgroundImage: NetworkImage(
                               "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"),
-                          // backgroundImage: NetworkImage(article.authorImageUrl),
                         ),
                         const SizedBox(
                           width: 10,
                         ),
                         Text(
-                          // article.category,
                           widget.author.length > 10
                               ? '${widget.author.substring(0, 10)}...'
                               : widget.author,
@@ -143,7 +137,6 @@ class _ArticleView extends State<ArticleView> {
                               width: 10,
                             ),
                             Text(
-                                // '${DateTime.now().difference(article.createdAt).inHours} jam yang lalu',
                                 widget.publishedAt.length > 5
                                     ? '${widget.publishedAt.substring(0, 10)}...'
                                     : widget.publishedAt,
@@ -152,29 +145,12 @@ class _ArticleView extends State<ArticleView> {
                       const SizedBox(
                         width: 10,
                       ),
-                      // CustomTag(
-                      //     backgroundColor: Colors.grey.shade200,
-                      //     children: [
-                      //       const Icon(
-                      //         Icons.remove_red_eye,
-                      //         color: Colors.grey,
-                      //       ),
-                      //       const SizedBox(
-                      //         width: 10,
-                      //       ),
-                      //       Text(
-                      //           // '${article.views}',
-                      //           widget.author,
-                      //           style: Theme.of(context).textTheme.bodyMedium!)
-                      //     ]),
                     ],
                   ),
                   const SizedBox(
                     height: 20,
                   ),
-                  Text(
-                      // article.title,
-                      widget.title,
+                  Text(widget.title,
                       style: Theme.of(context)
                           .textTheme
                           .headlineSmall!
@@ -182,9 +158,7 @@ class _ArticleView extends State<ArticleView> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Text(
-                      // article.body,
-                      widget.content,
+                  Text(widget.content,
                       textAlign: TextAlign.justify,
                       style: Theme.of(context)
                           .textTheme
@@ -202,9 +176,7 @@ class _ArticleView extends State<ArticleView> {
                       itemBuilder: (context, index) {
                         return ImageContainer(
                           width: MediaQuery.of(context).size.width * 0.42,
-                          imageUrl:
-                              // article.imageUrl,
-                              widget.imageUrl,
+                          imageUrl: widget.imageUrl,
                           margin:
                               const EdgeInsets.only(right: 5.0, bottom: 5.0),
                         );
