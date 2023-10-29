@@ -1,6 +1,3 @@
-// import 'package:berita_bola_app_bismilah/app/data/models/news_model.dart';
-// import 'package:berita_bola_app_bismilah/app/modules/home/views/home_page.dart';
-// import 'package:berita_bola_app_bismilah/app/data/models/news_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../article/views/article_view.dart';
@@ -14,8 +11,6 @@ class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final HomeController homeController = Get.put(HomeController());
-
     Article article = Article.articles[0];
     return Scaffold(
       appBar: AppBar(
@@ -31,7 +26,7 @@ class HomeView extends GetView<HomeController> {
       ),
       bottomNavigationBar: const BottomNavBar(index: 0),
       extendBodyBehindAppBar: true,
-      body: Obx(() => homeController.isLoading.value
+      body: Obx(() => Get.put(HomeController()).isLoading.value
           ? const Center(
               child: CircularProgressIndicator(),
             )
@@ -47,7 +42,6 @@ class HomeView extends GetView<HomeController> {
 }
 
 class _BreakingNews extends StatelessWidget {
-  final HomeController homeController = Get.put(HomeController());
   // const _BreakingNews({
   //   Key? key,
   //   required this.articles,
@@ -82,7 +76,7 @@ class _BreakingNews extends StatelessWidget {
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               // itemCount: articles.length,
-              itemCount: homeController.newsArticles.length,
+              itemCount: Get.put(HomeController()).newsArticles.length,
               itemBuilder: (context, index) {
                 return Container(
                   width: MediaQuery.of(context).size.width * 0.5,
@@ -96,18 +90,27 @@ class _BreakingNews extends StatelessWidget {
                       // );
                       Get.to(
                         () => ArticleView(
-                          title: homeController.newsArticles[index].title,
-                          description:
-                              homeController.newsArticles[index].description,
-                          imageUrl:
-                              homeController.newsArticles[index].urlToImage ??
-                                  "",
-                          author:
-                              homeController.newsArticles[index].author ?? "",
-                          publishedAt: homeController
-                              .newsArticles[index].publishedAt
+                          title: Get.put(HomeController())
+                              .newsArticles[index]
+                              .title,
+                          description: Get.put(HomeController())
+                              .newsArticles[index]
+                              .description,
+                          imageUrl: Get.put(HomeController())
+                                  .newsArticles[index]
+                                  .urlToImage ??
+                              "",
+                          author: Get.put(HomeController())
+                                  .newsArticles[index]
+                                  .author ??
+                              "",
+                          publishedAt: Get.put(HomeController())
+                              .newsArticles[index]
+                              .publishedAt
                               .toString(),
-                          content: homeController.newsArticles[index].content,
+                          content: Get.put(HomeController())
+                              .newsArticles[index]
+                              .content,
                         ),
                       );
                     },
@@ -116,15 +119,14 @@ class _BreakingNews extends StatelessWidget {
                         children: [
                           ImageContainer(
                             width: MediaQuery.of(context).size.width * 0.5,
-                            // imageUrl: articles[index].imageUrl,
-                            imageUrl:
-                                homeController.newsArticles[index].urlToImage ??
-                                    "",
+                            imageUrl: Get.put(HomeController())
+                                    .newsArticles[index]
+                                    .urlToImage ??
+                                "",
                           ),
                           const SizedBox(height: 10),
                           Text(
-                            // articles[index].title,
-                            homeController.newsArticles[index].title,
+                            Get.put(HomeController()).newsArticles[index].title,
                             maxLines: 2,
                             style: Theme.of(context)
                                 .textTheme
@@ -136,16 +138,19 @@ class _BreakingNews extends StatelessWidget {
                             height: 5,
                           ),
                           Text(
-                              // '${DateTime.now().difference(articles[index].createdAt).inHours} jam yang lalu',
-                              homeController.newsArticles[index].publishedAt
+                              Get.put(HomeController())
+                                  .newsArticles[index]
+                                  .publishedAt
                                   .toString(),
                               style: Theme.of(context).textTheme.bodySmall),
                           const SizedBox(
                             height: 5,
                           ),
                           Text(
-                              // 'by ${articles[index].author}',
-                              homeController.newsArticles[index].author ?? "",
+                              Get.put(HomeController())
+                                      .newsArticles[index]
+                                      .author ??
+                                  "",
                               style: Theme.of(context).textTheme.bodySmall),
                         ]),
                   ),
@@ -160,11 +165,7 @@ class _BreakingNews extends StatelessWidget {
 }
 
 class _NewsOfTheDay extends StatelessWidget {
-  const _NewsOfTheDay(
-      {
-      // required this.newsArticle,
-      required this.article});
-  // final NewsArticle newsArticle;
+  const _NewsOfTheDay({required this.article});
   final Article article;
 
   @override
@@ -174,7 +175,6 @@ class _NewsOfTheDay extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(20.0),
       imageUrl: article.imageUrl,
-      // newsArticle.urlToImage ?? "",
       child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -194,7 +194,6 @@ class _NewsOfTheDay extends StatelessWidget {
             const SizedBox(height: 10),
             Text(
               article.title,
-              // newsArticle.title,
               style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                   fontWeight: FontWeight.bold,
                   height: 1.25,
