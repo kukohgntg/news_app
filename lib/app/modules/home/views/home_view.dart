@@ -39,6 +39,64 @@ class HomeView extends GetView<HomeController> {
   }
 }
 
+class _NewsOfTheDay extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ImageContainer(
+      height: MediaQuery.of(context).size.height * 0.45,
+      width: double.infinity,
+      padding: const EdgeInsets.all(20.0),
+      imageUrl: Get.put(HomeController()).newsArticles[0].urlToImage.toString(),
+      // article.imageUrl,
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CustomTag(
+              backgroundColor: Colors.grey.withAlpha(150),
+              children: [
+                Text(
+                  'Berita Hari Ini',
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyMedium!
+                      .copyWith(color: Colors.white),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Text(
+              Get.put(HomeController()).newsArticles[0].title,
+              // article.title,
+              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                  fontWeight: FontWeight.bold,
+                  height: 1.25,
+                  color: Colors.white),
+            ),
+            TextButton(
+                onPressed: () {},
+                style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                child: Row(
+                  children: [
+                    Text(
+                      'Baca Semua',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge!
+                          .copyWith(color: Colors.white),
+                    ),
+                    const SizedBox(width: 10),
+                    const Icon(
+                      Icons.arrow_right_alt,
+                      color: Colors.white,
+                    )
+                  ],
+                )),
+          ]),
+    );
+  }
+}
+
 class _BreakingNews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -151,64 +209,6 @@ class _BreakingNews extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class _NewsOfTheDay extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ImageContainer(
-      height: MediaQuery.of(context).size.height * 0.45,
-      width: double.infinity,
-      padding: const EdgeInsets.all(20.0),
-      imageUrl: Get.put(HomeController()).newsArticles[0].urlToImage.toString(),
-      // article.imageUrl,
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CustomTag(
-              backgroundColor: Colors.grey.withAlpha(150),
-              children: [
-                Text(
-                  'Berita Hari Ini',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(color: Colors.white),
-                ),
-              ],
-            ),
-            const SizedBox(height: 10),
-            Text(
-              Get.put(HomeController()).newsArticles[0].title,
-              // article.title,
-              style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                  fontWeight: FontWeight.bold,
-                  height: 1.25,
-                  color: Colors.white),
-            ),
-            TextButton(
-                onPressed: () {},
-                style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                child: Row(
-                  children: [
-                    Text(
-                      'Baca Semua',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge!
-                          .copyWith(color: Colors.white),
-                    ),
-                    const SizedBox(width: 10),
-                    const Icon(
-                      Icons.arrow_right_alt,
-                      color: Colors.white,
-                    )
-                  ],
-                )),
-          ]),
     );
   }
 }
