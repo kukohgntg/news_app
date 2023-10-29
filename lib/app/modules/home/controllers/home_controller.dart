@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import '../../../data/api/remote_service.dart';
 import '../../../data/models/news_model.dart';
@@ -18,6 +19,10 @@ class HomeController extends GetxController {
       var articles = await RemoteNewsService.fetchNewsArticles();
       if (articles != null) {
         newsArticles(articles);
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print('An error occurred: $e');
       }
     } finally {
       isLoading(false);
