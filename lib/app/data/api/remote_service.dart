@@ -1,17 +1,15 @@
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import '../models/news_model.dart';
 
 class RemoteNewsService {
-  static var client = http.Client();
+  static const String _baseUrl = 'https://newsapi.org/v2/';
+  static const String _country = 'us';
+  static const String _category = 'business';
+  static const String _apiKey = 'fdbf840272ef478ca1cda2f65c844b7f';
 
   static Future<List<NewsArticle>?> fetchNewsArticles() async {
-    var apiKey = "fdbf840272ef478ca1cda2f65c844b7f";
-    var response = await client.get(
-      Uri.parse(
-        "https://newsapi.org/v2/everything?q=tesla&from=2023-09-29&sortBy=publishedAt&apiKey=$apiKey",
-      ),
-      // 'https://newsapi.org/v2/everything?q=tesla&from=2023-09-22&sortBy=publishedAt&apiKey=${apiKey}'),
-    );
+    var response = await get(Uri.parse(
+        '${_baseUrl}top-headlines?country=$_country&category=$_category&apiKey=$_apiKey'));
     if (response.statusCode == 200) {
       return newsArticleFromJson(response.body);
     } else {
