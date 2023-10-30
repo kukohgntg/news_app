@@ -4,7 +4,7 @@ import '../../../data/api/remote_service.dart';
 import '../../../data/models/news_model.dart';
 
 class HomeController extends GetxController {
-  var newsArticles = <NewsArticle>[].obs;
+  var newsArticles = <Article>[].obs;
   var isLoading = true.obs;
 
   @override
@@ -16,7 +16,7 @@ class HomeController extends GetxController {
   void fetchArticles() async {
     try {
       isLoading(true);
-      var articles = await RemoteNewsService.fetchNewsArticles();
+      var articles = await NewsAPI.fetchNewsArticles();
       if (articles != null) {
         newsArticles(articles);
       }

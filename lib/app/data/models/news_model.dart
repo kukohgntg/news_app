@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-List<NewsArticle> newsArticleFromJson(String str) => List<NewsArticle>.from(json
+List<Article> newsArticleFromJson(String str) => List<Article>.from(json
     .decode(str)['articles']
-    .map((x) => NewsArticle.fromJson(Map<String, dynamic>.from(x))));
+    .map((x) => Article.fromJson(Map<String, dynamic>.from(x))));
 
-class NewsArticle {
+class Article {
   Source source;
   String? author;
   String title;
@@ -14,7 +14,7 @@ class NewsArticle {
   DateTime publishedAt;
   String content;
 
-  NewsArticle({
+  Article({
     required this.source,
     this.author,
     required this.title,
@@ -25,7 +25,7 @@ class NewsArticle {
     required this.content,
   });
 
-  factory NewsArticle.fromJson(Map<String, dynamic> json) => NewsArticle(
+  factory Article.fromJson(Map<String, dynamic> json) => Article(
         source: Source.fromJson(json["source"]),
         author: json["author"],
         title: json["title"].toString(),
