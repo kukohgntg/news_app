@@ -4,6 +4,8 @@
 // import '../modules/discover/bindings/discover_binding.dart';
 // import '../modules/discover/views/discover_view.dart';
 import 'package:get/get.dart';
+import '../modules/discover/bindings/discover_binding.dart';
+import '../modules/discover/views/discover_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
@@ -26,11 +28,11 @@ class AppPages {
     //   page: () => const ArticleView(),
     //   binding: ArticleBinding(),
     // ),
-    // GetPage(
-    //   name: _Paths.DISCOVER,
-    //   page: () => const DiscoverView(),
-    //   binding: DiscoverBinding(),
-    // ),
+    GetPage(
+      name: _Paths.DISCOVER,
+      page: () => DiscoverView(),
+      binding: DiscoverBinding(),
+    ),
     GetPage(
       name: _Paths.PROFILE,
       page: () => const ProfileView(),

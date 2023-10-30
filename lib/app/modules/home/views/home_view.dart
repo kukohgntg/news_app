@@ -65,7 +65,7 @@ class _NewsOfTheDay extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              Get.put(HomeController()).newsArticles[0].title,
+              Get.put(HomeController()).newsArticles[0].title.toString(),
               style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                   fontWeight: FontWeight.bold,
                   height: 1.25,
@@ -133,10 +133,12 @@ class _BreakingNews extends StatelessWidget {
                         () => ArticleView(
                           title: Get.put(HomeController())
                               .newsArticles[index]
-                              .title,
+                              .title
+                              .toString(),
                           description: Get.put(HomeController())
                               .newsArticles[index]
-                              .description,
+                              .description
+                              .toString(),
                           imageUrl: Get.put(HomeController())
                               .newsArticles[index]
                               .urlToImage
@@ -151,7 +153,8 @@ class _BreakingNews extends StatelessWidget {
                               .toString(),
                           content: Get.put(HomeController())
                               .newsArticles[index]
-                              .content,
+                              .content
+                              .toString(),
                         ),
                       );
                     },
@@ -167,7 +170,10 @@ class _BreakingNews extends StatelessWidget {
                           ),
                           const SizedBox(height: 10),
                           Text(
-                            Get.put(HomeController()).newsArticles[index].title,
+                            Get.put(HomeController())
+                                .newsArticles[index]
+                                .title
+                                .toString(),
                             maxLines: 2,
                             style: Theme.of(context)
                                 .textTheme

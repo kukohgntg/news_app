@@ -5,49 +5,83 @@ List<Article> newsArticleFromJson(String str) => List<Article>.from(json
     .map((x) => Article.fromJson(Map<String, dynamic>.from(x))));
 
 class Article {
-  Source source;
-  String? author;
-  String title;
-  String description;
-  String url;
-  String? urlToImage;
-  DateTime publishedAt;
-  String content;
+  final Source source;
+  final String? author,
+      title,
+      description,
+      url,
+      urlToImage,
+      publishedAt,
+      content;
 
-  Article({
-    required this.source,
+  Article(
+    this.source,
     this.author,
-    required this.title,
-    required this.description,
-    required this.url,
+    this.title,
+    this.description,
+    this.url,
     this.urlToImage,
-    required this.publishedAt,
-    required this.content,
-  });
+    this.publishedAt,
+    this.content,
+  );
 
-  factory Article.fromJson(Map<String, dynamic> json) => Article(
-        source: Source.fromJson(json["source"]),
-        author: json["author"],
-        title: json["title"].toString(),
-        description: json["description"].toString(),
-        url: json["url"],
-        urlToImage: json["urlToImage"],
-        publishedAt: DateTime.parse(json["publishedAt"]),
-        content: json["content"].toString(),
-      );
+  factory Article.fromJson(Map<String, dynamic> json) {
+    return Article(
+      Source.fromJson(json["source"]),
+      json["author"],
+      json["title"],
+      json["description"],
+      json["url"],
+      json["urlToImage"],
+      json["publishedAt"],
+      json["content"],
+    );
+  }
+
+  static List<Article> parseList(List<dynamic> list) {
+    return list.map((e) => Article.fromJson(e)).toList();
+  }
 }
 
 class Source {
-  dynamic id;
-  String name;
+  final String? id, name, description, url, category, language, country;
 
-  Source({
+  Source(
     this.id,
-    required this.name,
-  });
+    this.name,
+    this.description,
+    this.url,
+    this.category,
+    this.language,
+    this.country,
+  );
 
-  factory Source.fromJson(Map<String, dynamic> json) => Source(
-        id: json["id"],
-        name: json["name"],
-      );
+  factory Source.fromJson(Map<String, dynamic> json) {
+    return Source(
+      json["id"],
+      json["name"],
+      json["description"],
+      json["url"],
+      json["category"],
+      json["language"],
+      json["country"],
+    );
+  }
+
+  static List<Source> parseList(List<dynamic> list) {
+    return list.map((e) => Source.fromJson(e)).toList();
+  }
+}
+
+class ApiError {
+  final String? code, message;
+
+  ApiError(this.code, this.message);
+
+  factory ApiError.fromJson(Map<String, dynamic> json) {
+    return ApiError(
+      json["code"],
+      json["message"],
+    );
+  }
 }
