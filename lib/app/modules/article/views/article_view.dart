@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../widgets/custom_tag.dart';
 import '../../widgets/image_container.dart';
-// import 'package:get/get.dart';
-// import '../../models/article_model.dart';
-// import '../controllers/article_controller.dart';
 
 class ArticleView extends StatefulWidget {
   final String title;
