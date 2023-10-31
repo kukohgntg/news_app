@@ -4,6 +4,7 @@ import '../../../data/models/news_model.dart';
 import '../../widgets/bottom_nav_bar.dart';
 import '../../widgets/image_container.dart';
 import '../controllers/discover_controller.dart';
+import 'news_web_view.dart';
 
 class DiscoverView extends GetView<NewsController> {
   // const DiscoverView({Key? key}) : super(key: key);
@@ -81,7 +82,7 @@ class DiscoverView extends GetView<NewsController> {
 
   Widget _buildNewsListView(RxList<Article> articleList) {
     return ListView.builder(
-      padding: EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
       itemBuilder: (context, index) {
         Article article = articleList[index];
         return _buildNewsItem(article);
@@ -93,7 +94,7 @@ class DiscoverView extends GetView<NewsController> {
   Widget _buildNewsItem(Article article) {
     return InkWell(
       onTap: () {
-        // Get.to(NewsWebView(url: article.url!));
+        Get.to(NewsWebView(url: article.url!));
       },
       child: Row(
         children: [
