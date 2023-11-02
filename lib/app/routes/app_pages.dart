@@ -1,15 +1,19 @@
-// ignore_for_file: constant_identifier_names
-// import '../modules/article/bindings/article_binding.dart';
-// import '../modules/article/views/article_view.dart';
-// import '../modules/discover/bindings/discover_binding.dart';
-// import '../modules/discover/views/discover_view.dart';
 import 'package:get/get.dart';
+
+import '../modules/details/bindings/details_binding.dart';
+import '../modules/details/views/details_view.dart';
 import '../modules/discover/bindings/discover_binding.dart';
 import '../modules/discover/views/discover_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
+
+// ignore_for_file: constant_identifier_names
+// import '../modules/article/bindings/article_binding.dart';
+// import '../modules/article/views/article_view.dart';
+// import '../modules/discover/bindings/discover_binding.dart';
+// import '../modules/discover/views/discover_view.dart';
 part 'app_routes.dart';
 
 class AppPages {
@@ -37,6 +41,11 @@ class AppPages {
       name: _Paths.PROFILE,
       page: () => const ProfileView(),
       binding: ProfileBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAILS,
+      page: () => const DetailsView(url: ''),
+      binding: DetailsBinding(),
     ),
   ];
 }

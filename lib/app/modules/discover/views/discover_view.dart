@@ -1,10 +1,10 @@
+import 'package:berita_bola_app_bismilah/app/modules/details/views/details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../data/models/news_model.dart';
 import '../../widgets/bottom_nav_bar.dart';
 import '../../widgets/image_container.dart';
 import '../controllers/discover_controller.dart';
-import 'news_web_view.dart';
 
 class DiscoverView extends GetView<NewsController> {
   // const DiscoverView({Key? key}) : super(key: key);
@@ -94,7 +94,7 @@ class DiscoverView extends GetView<NewsController> {
   Widget _buildNewsItem(Article article) {
     return InkWell(
       onTap: () {
-        Get.to(NewsWebView(url: article.url!));
+        Get.to(DetailsView(url: article.url!));
       },
       child: Row(
         children: [
@@ -209,7 +209,7 @@ class _DiscoverNews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.15,
+      height: MediaQuery.of(context).size.height * 0.25,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
